@@ -31,7 +31,7 @@ class App extends Component {
     return (
       <div className="">
         <Router>
-          <Header />
+          <Header currentUser={this.state.currentUser} />
           <Switch>
             <Route exact path="/shop" component={ShopPage}></Route>
             <Route exact path="/signin" component={SignInAndSignUpPage}></Route>

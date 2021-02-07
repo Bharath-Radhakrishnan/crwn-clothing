@@ -7,7 +7,7 @@ import ShopPage from "./pages/shop/shopepage";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up-page/sign-in-and-sign-up-page";
 
 import Header from "./components/header/header";
-import { auth } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 class App extends Component {
   constructor(props) {
@@ -18,9 +18,21 @@ class App extends Component {
   }
   unSubscribeFromAuth = null;
   componentDidMount() {
-    this.unSubscribeFromAuth = auth.onAuthStateChanged((user) => {
+    this.unSubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      //----when-log-out-userAuth-becomes-null-----
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        userRef.onSnapshot((snapShot) => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data(),
+            },
+          });
+        });
+      }
       this.setState({
-        currentUser: user,
+        currentUser: userAuth,
       });
     });
   }

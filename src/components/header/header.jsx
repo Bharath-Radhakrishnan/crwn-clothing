@@ -20,7 +20,6 @@ export default function Header({ currentUser }) {
           <div
             className="option"
             onClick={() => {
-              console.log("clicked");
               auth.signOut();
             }}
           >

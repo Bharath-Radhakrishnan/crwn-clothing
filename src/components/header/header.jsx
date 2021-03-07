@@ -7,7 +7,7 @@ import CartDropdown from "../cart-dropdown/cart-dropdown";
 
 import { auth } from "../../firebase/firebase.utils";
 import "./header.scss";
-function Header({ currentUser }) {
+function Header({ currentUser, hidden }) {
   return (
     <div className="header">
       <Link to="/" className="logo-container">
@@ -35,12 +35,14 @@ function Header({ currentUser }) {
           </Link>
         )}
         <CartIcon />
+
+        {hidden ? null : <CartDropdown />}
       </div>
-      <CartDropdown />
     </div>
   );
 }
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden,
 });
 export default connect(mapStateToProps)(Header);

@@ -4,10 +4,11 @@ import "./collection-item.scss";
 import CustomButton from "../custom-button/custom-button";
 import { addItem } from "../../redux/cart/cart.actions";
 // import { connect } from "react-redux";
-function CollectionItem({ id, name, imageUrl, price, addItem }) {
+function CollectionItem({ item, addItem }) {
+  const { id, name, imageUrl, price } = item;
   const handleClick = () => {
-    console.log("clicked", id, name);
-    addItem(name);
+    console.log("clicked", item);
+    addItem(item);
   };
   return (
     <div className="collection-item">

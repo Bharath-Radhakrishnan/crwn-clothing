@@ -16,6 +16,7 @@ import Header from "./components/header/header";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./redux/user/user.selectors";
+import CheckoutPage from "./pages/checkout/checkoutpage";
 
 class App extends Component {
   unSubscribeFromAuth = null;
@@ -46,6 +47,7 @@ class App extends Component {
         <Router>
           <Header />
           <Switch>
+          <Route exact path="/checkout" component={CheckoutPage}></Route>
             <Route exact path="/shop" component={ShopPage}></Route>
             <Route
               exact
@@ -59,6 +61,7 @@ class App extends Component {
               }
             ></Route>
             <Route exact path="/" component={Homepage}></Route>
+
           </Switch>
         </Router>
       </div>

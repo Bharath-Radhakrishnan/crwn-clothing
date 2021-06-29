@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import "./collection-item.scss";
 import CustomButton from "../custom-button/custom-button";
 import { addItem } from "../../redux/cart/cart.actions";
-// import { connect } from "react-redux";
 function CollectionItem({ item, addItem }) {
   const { id, name, imageUrl, price } = item;
   const handleClick = () => {
@@ -23,14 +22,6 @@ function CollectionItem({ item, addItem }) {
     </div>
   );
 }
-// const mapStateToProps = ({
-//   user: { currentUser },
-//   cart: { hidden, addItem },
-// }) => ({
-//   currentUser,
-//   hidden,
-//   addItem,
-// });
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item) => dispatch(addItem(item)),
 });
